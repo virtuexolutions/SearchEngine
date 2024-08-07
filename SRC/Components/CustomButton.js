@@ -159,7 +159,7 @@ const CustomButton = (props ) => {
               textstyle,
               {
                 color: textColor,
-                // fontSize: fontSize ? fontSize : moderateScale(15, 0.3),
+                fontSize: fontSize ? fontSize : moderateScale(15, 0.3),
               },
               textTransform && {
                 textTransform: textTransform,
@@ -193,7 +193,7 @@ const styles = StyleSheet.create({
   text: {
     color: 'white',
     // fontWeight: 'bold',
-    textTransform: 'uppercase',
+    textTransform: 'capitalize',
     textAlign: 'center',
     ...FONTS.Medium11
   },

@@ -12,6 +12,9 @@ import {
 import SplashScreen from './SRC/Screens/SplashScreen';
 
 import LoginScreen from './SRC/Screens/LoginScreen';
+import AppNavigator from './SRC/appNavigation';
+import GetStart from './SRC/Screens/GetStart';
+import CreateAccount from './SRC/Screens/CreateAccount';
 
 
 const App = () => {
@@ -45,7 +48,8 @@ const MainContainer = () => {
   }
   // return <AppNavigator />
   // return <EditProfile />
-  return <LoginScreen/>
+  // <LoginScreen/>
+   return <CreateAccount/>
 };
 
 const useloader = value => {
