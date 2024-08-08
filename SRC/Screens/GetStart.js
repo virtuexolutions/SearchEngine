@@ -52,21 +52,12 @@ const GetStart = props => {
             height: windowHeight,
           }}
           source={require('../Assets/Images/bg.png')}>
-          <ModalComponent
-            isCircle={true}
-            isText={false}
-            placeHolderText={'jfhsdhfjkh'}
-            titleText={'meerab'}
-            style={{
-                padding:moderateScale(10,.6)
-            }}
-            setUserName={setUserName}
-            username={username}
-            setPasswrod={setPasswrod}
-            password={password}
-            buttonText={'buttonText'}
-            isSave={false}
-          />
+          <View style={styles.imageContainer}>
+            <CustomImage
+              style={{height: '100%', width: '100%'}}
+              source={require('../Assets/Images/logo2.png')}
+            />
+          </View>
         </ImageBackground>
       </ScrollView>
     </SafeAreaView>
@@ -74,106 +65,15 @@ const GetStart = props => {
 };
 
 const styles = StyleSheet.create({
-  Card: {
-    backgroundColor: 'transparent',
-    width: windowWidth * 0.9,
-    height: windowHeight * 0.49,
-    borderRadius: moderateScale(35, 0.6),
-    borderWidth: 2,
-    borderColor: 'white',
+  imageContainer: {
+    height: windowHeight * 0.1,
+    width: windowWidth * 0.3,
   },
-  image: {
-    position: 'absolute',
-    left: 115,
-    top: -50,
-    width: windowHeight * 0.17,
-    height: windowHeight * 0.17,
-    borderRadius: (windowHeight * 0.17) / 2,
-    backgroundColor: '#4FCCFA',
-    borderWidth: 2,
-    borderColor: 'white',
-    overflow: 'hidden',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  txt: {
-    color: 'white',
-    fontSize: moderateScale(48, 0.6),
-    zIndex: -1,
-    textTransform: 'uppercase',
-  },
-  txt2: {
-    color: '#000000',
-    fontSize: moderateScale(12, 0.6),
-    textTransform: 'capitalize',
-    textAlign: 'left',
-    width: windowWidth * 0.73,
-    paddingVertical: moderateScale(5, 0.6),
-  },
-  txt3: {
-    color: 'white',
-    fontSize: moderateScale(11, 0.6),
-    textTransform: 'capitalize',
-    textAlign: 'center',
-    width: windowWidth * 0.73,
-    paddingVertical: moderateScale(5, 0.6),
-  },
-
-  heading: {
-    color: '#000000',
-    fontSize: moderateScale(30, 0.6),
-    zIndex: -1,
-    letterSpacing: 1.7,
-  },
-  container: {
-    paddingTop: windowHeight * 0.1,
-    height: windowHeight,
-    width: windowWidth,
-    alignItems: 'center',
-  },
-  description: {
-    color: '#000000',
-    ...FONTS.PoppinsLight11,
-    fontSize: moderateScale(10, 0.6),
-    paddingHorizontal: SIZES.padding * 1.3,
-    textAlign: 'center',
-  },
-  text: {
-    color: 'white',
-    marginTop: moderateScale(20, 0.3),
-    ...FONTS.Regular10,
-    paddingTop: moderateScale(10, 0.3),
-  },
-  signup_btn: {
-    ...FONTS.Bold16,
-    color: 'white',
-  },
-  edit: {
-    backgroundColor: Color.white,
-    width: moderateScale(20, 0.3),
-    height: moderateScale(20, 0.3),
-    position: 'absolute',
-    bottom: -2,
-    right: 5,
-    borderRadius: moderateScale(10, 0.3),
-    elevation: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
-    zIndex: 1,
-  },
-  icon: {
-    backgroundColor: Color.white,
-    height: windowHeight * 0.03,
-    width: windowHeight * 0.03,
-    borderRadius: (windowHeight * 0.03) / 2,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  text_view: {
-    justifyContent: 'flex-end',
-    flex: 1,
-    marginBottom: SIZES.padding * 2,
-  },
+  card:{
+    borderWidth:1,
+    borderColor:'white',
+    width:windowWidth*0.7 ,
+  }
 });
 
 export default GetStart;

@@ -141,7 +141,7 @@ const ModalComponent = ({
               <CustomText style={styles.txt4}>Save being Info</CustomText>
             </View>
           )}
-          <View style={{marginTop: SIZES.padding * 1.6,}} />
+          <View style={{marginTop: SIZES.padding * 1.6}} />
           <CustomButton
             onPress={() => {}}
             text={buttonText ? buttonText : 'X'}
@@ -161,9 +161,7 @@ const ModalComponent = ({
           We Will Send SMS Verification Code
         </CustomText>
         <TouchableOpacity style={styles.btn}>
-          <CustomText style={styles.txt3}>
-           user email
-          </CustomText>
+          <CustomText style={styles.txt3}>user email</CustomText>
         </TouchableOpacity>
       </View>
     </LinearGradient>
@@ -239,9 +237,9 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     borderColor: 'white',
     borderWidth: 1,
-    alignItems:'center',
-    justifyContent:'center',
-    marginVertical:moderateScale(10,.3)
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: moderateScale(10, 0.3),
   },
 
   heading: {

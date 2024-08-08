@@ -49,7 +49,7 @@ const MainContainer = () => {
   // return <AppNavigator />
   // return <EditProfile />
   // <LoginScreen/>
-   return <CreateAccount/>
+   return <GetStart/>
 };
 
 const useloader = value => {
