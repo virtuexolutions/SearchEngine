@@ -29,7 +29,7 @@ const Header = props => {
   const dispatch = useDispatch();
   const notification = useSelector(state => state.commonReducer.notification);
   const cartData = useSelector(state => state.commonReducer.cart);
-  const navigationN = useNavigation();
+  // const navigationN = useNavigation();
   // const navigation = useNavigation();
 
   const [isModalVisible, setModalVisible] = useState(false);
@@ -45,7 +45,8 @@ const Header = props => {
     cart,
     Notify,
     hideUser,
-    navigation,
+    hideDrawer,
+    // navigation,
     textstyle
   } = props;
 
@@ -92,7 +93,7 @@ const Header = props => {
           alignItems: 'center',
           // backgroundColor: showBack || showList ? 'white' : 'transparent',
         }}>
-        {showBack ? (
+        {!hideDrawer && showBack ? (
           <Icon
             name={'arrow-back'}
             as={Ionicons}
@@ -102,7 +103,7 @@ const Header = props => {
               navigationN.goBack();
             }}
           />
-        ) : (
+        ) : !hide  (
           <Icon
             style={[styles.menu, styles.shadowporp]}
             name={'menu'}

@@ -29,7 +29,7 @@ const TextInputWithTitle = props => {
         <CustomText
           style={[
             {
-              color: Color.veryLightGray,
+              color: props.titleColor ? props.titleColor: Color.veryLightGray,
               fontSize: moderateScale(12, 0.3),
               marginBottom: moderateScale(5, 0.3),
               width: windowWidth * props.viewWidth,
@@ -51,7 +51,7 @@ const TextInputWithTitle = props => {
             // borderColor: Color.veryLightGray,
             backgroundColor: props.backgroundColor,
             borderBottomWidth: props.borderBottomWidth,
-            borderColor: Color.lightGrey,
+            borderColor: props.borderColor,
           },
           props.elevation && {
             shadowColor: Color.themeColor,

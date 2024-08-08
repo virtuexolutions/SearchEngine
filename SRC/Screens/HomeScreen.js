@@ -8,6 +8,8 @@ import {
 import { moderateScale, ScaledSheet } from 'react-native-size-matters';
 import ScreenBoiler from '../Components/ScreenBoiler';
 import LinearGradient from 'react-native-linear-gradient';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import { View, RefreshControl, ScrollView, FlatList } from 'react-native';
 import CustomText from '../Components/CustomText';
 import { useIsFocused, } from '@react-navigation/native';
@@ -15,103 +17,50 @@ import Header from '../Components/Header';
 import CustomButton from '../Components/CustomButton';
 
 import { FONTS, SIZES } from '../Constant/theme';
+import CustomImage from '../Components/CustomImage';
+import { Icon } from 'native-base';
+import TextInputWithTitle from '../Components/TextInputWithTitle';
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = ({ 
+  navigation
+ }) => {
   // const
   // const isFocused = useIsFocused();
   // const navigation = useNavigation();
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [rbref, setRbRef] = useState(null);
+const [ search,setSearch ] = useState('')
 
   const dummyArray = [
-    {
-      id: 1,
-      carN0: 'car no2',
-      ratings: 4.5,
-      carModel: '2013 dodge caravan',
-      userImage: require('../Assets/Images/men.png'),
-      carimage: require('../Assets/Images/car1.png'),
-      ratingCount: '4.0',
-      time: '3 mint',
-      distance: '0.2 km',
-      availableSeat: 2,
-      pickUppoint: 'fannie street san angelo, texas',
-      dropLocation: 'navile street salem colorado',
-    },
-    {
-      id: 2,
-      carN0: 'car no3',
-      ratings: 4.1,
-      time: '5 mint',
-      ratingCount: '3.0',
-
-      carModel: '2013 dodge caravan',
-      userImage: require('../Assets/Images/dummyUser.png'),
-      carimage: require('../Assets/Images/car3.png'),
-      distance: '0.4 km',
-      availableSeat: 4,
-      pickUppoint: 'fannie street san angelo, texas',
-      dropLocation: 'navile street salem colorado',
-    },
-    {
-      id: 3,
-      carN0: 'car no22',
-      ratings: 4.2,
-      ratingCount: '4.0',
-      time: '10 mint',
-      distance: '0.5 km',
-
-      carModel: '2013 dodge caravan',
-      userImage: require('../Assets/Images/dummyUser.png'),
-      carimage: require('../Assets/Images/car4.png'),
-      availableSeat: 3,
-      pickUppoint: 'fannie street san angelo, texas',
-      dropLocation: 'navile street salem colorado',
-    },
-    {
-      id: 4,
-      carN0: 'car no12',
-      ratings: 3.5,
-      ratingCount: '3.0',
-      time: '3 mint',
-      distance: '0.4 km',
-
-      carModel: '2013 dodge caravan',
-      userImage: require('../Assets/Images/dummyman1.png'),
-      carimage: require('../Assets/Images/car3.png'),
-      availableSeat: 2,
-      pickUppoint: 'fannie street san angelo, texas',
-      dropLocation: 'navile street salem colorado',
-    },
-    {
-      id: 5,
-      carN0: 'car no22',
-      ratings: 2.9,
-      time: '20 mint',
-
-      carModel: '2013 dodge caravan',
-      userImage: require('../Assets/Images/dummyUser1.png'),
-      carimage: require('../Assets/Images/car4.png'),
-      ratingCount: '2.0',
-      distance: '0.11 km',
-      availableSeat: 1,
-      pickUppoint: 'fannie street san angelo, texas',
-      dropLocation: 'navile street salem colorado',
-    },
+   {
+    id:'1',
+    image:require('../Assets/Images/card1.png'),
+    heading:"Lorem Ipsum",
+    description:"Lorem ipsum dolor sit amet, consectetur adipis cing elit. In eu ante venenatis, volu tpat arcu eu, ege stas lorem. Fusce malesuada qui."
+  },
+   {
+    id:'2',
+    image:require('../Assets/Images/man1.png'),
+    heading:"Lorem Ipsum",
+    description:"Lorem ipsum dolor sit amet, consectetur adipis cing elit. In eu ante venenatis, volu tpat arcu eu, ege stas lorem. Fusce malesuada qui."
+  },
+  ];
+  const dummyArray2 = [
+   {
+    id:'1',
+    image:require('../Assets/Images/card1.png'),
+    heading:"Lorem Ipsum",
+    description:"orem ipsum dolor sit amet, consectetur adipiscing elit. In eu ante venenatis, volutpat arcu eu, egestas lorem. Fusce malesuada quis velit non dapibus. Quisque sit amet fringilla quam, quis bibendum leo. Donec condimentum et ligula at malesuada. Suspendisse lobortis, ligula vel lacinia consectetur, tortor massa aliquet nisi,"
+  },
+   {
+    id:'2',
+    image:require('../Assets/Images/man1.png'),
+    heading:"Lorem Ipsum",
+    description:"orem ipsum dolor sit amet, consectetur adipiscing elit. In eu ante venenatis, volutpat arcu eu, egestas lorem. Fusce malesuada quis velit non dapibus. Quisque sit amet fringilla quam, quis bibendum leo. Donec condimentum et ligula at malesuada. Suspendisse lobortis, ligula vel lacinia consectetur, tortor massa aliquet nisi,"
+  },
   ];
 
   return (
-    <ScreenBoiler
-      showHeader
-      navigation={navigation}
-      title={'book your cap'}
-      headerColor={['white', 'white']}
-      hideUser={false}
-      statusBarBackgroundColor={'white'}
-      statusBarContentStyle={'dark-content'}
-      headertextstyle={{ ...FONTS.PoppinsSemiBold13 }}
-    >
+    
       <ScrollView
         contentContainerStyle={{
           paddingBottom: moderateScale(150, 0.6),
@@ -121,30 +70,91 @@ const HomeScreen = ({ navigation }) => {
           minHeight: windowHeight,
           backgroundColor: 'white',
         }}>
-        <View style={{ paddingHorizontal: SIZES.padding * 0.5 }}>
-          <FlatList
-            showsVerticalScrollIndicator={false}
-            style={{
-              paddingTop: moderateScale(10, 0.6),
-              paddingHorizontal: moderateScale(18, 0.6),
-            }}
-            contentContainerStyle={{
-              paddingBottom: moderateScale(10, 0.6),
-            }}
-            data={dummyArray}
-            renderItem={(item, index) => {
-              return <BookYourCapComponent item={item?.item} />;
-            }}
-          />
-        </View>
+          <View style={styles.header}>
+            <CustomText isBold style={{fontSize:moderateScale(17,0.3)}}>Robert Downey Jr's Search</CustomText>
+          </View>
+          <View style={styles.search}>
+            <TextInputWithTitle
+                iconHeigth={windowHeight * 0.00005}
+                iconName={'search'}
+                iconType={Ionicons}
+                // LeftIcon={true}
+                
+                placeholder={'Search'}
+                setText={setSearch}
+                value={search}
+                viewHeight={0.06}
+                viewWidth={0.85}
+                inputWidth={0.55}
+                rightIcon
+                // borderBottomWidth={1}
+                color={'#5FDEFA'}
+                border={1}
+                borderRadius={moderateScale(30, 0.3)}
+                backgroundColor={'transparent'}
+                borderColor={'#5FDEFA'}
+                marginTop={moderateScale(10, 0.3)}
+                // color={Color.white}
+                placeholderColor={Color.grey}
+              />
+            </View>
+       
+      <View style={{width: windowWidth, alignItems:'center'}}>
+        <FlatList
+        data={dummyArray}
+        // keyExtractor={item => item.id}
+        numColumns={2}
+        renderItem={({item, index}) =>{
+          return (
+            <View key={index} style={styles.card}>
+              <View style={styles.imgContainer}>
+
+              <CustomImage source={item.image} style={styles.image}/>
+              </View>
+              <CustomText isBold style={styles.txt}>{item.heading}</CustomText>
+              <CustomText style={styles.desc}>{item.description}</CustomText>
+            </View>
+          );
+        }}  
+        />
+      </View>
+      <View style={styles.recent}>
+        <CustomText isBold>Recents</CustomText>
+        <Icon as={MaterialIcons} name='filter-list' size={moderateScale(24,0.3)}/>
+      </View>
+      <View style={{width: windowWidth, alignItems:'center'}}>
+        <FlatList
+        data={dummyArray2}
+        // keyExtractor={item => item.id}
+        // numColumns={2}
+        renderItem={({item, index}) =>{
+          return (
+            <View key={index} style={styles.recentCard}>
+              <View style={styles.imgContainer_recent}>
+              <CustomImage source={item.image} style={styles.image}/>
+              </View>
+              <CustomText isBold style={[styles.txt, {marginLeft: moderateScale(3,0.3)}]}>{item.heading}</CustomText>
+              <CustomText style={[styles.desc, {width: windowWidth * 0.85, fontSize:moderateScale(7,0.3), marginLeft: moderateScale(3,0.3)}]}>{item.description}</CustomText>
+            </View>
+          );
+        }}  
+        />
+      </View>
       </ScrollView>
-    </ScreenBoiler>
+    // </ScreenBoiler>
   );
 };
 
 const styles = ScaledSheet.create({
   icon: {
     marginHorizontal: moderateScale(10, 0.3),
+  },
+  header:{
+    width: windowWidth,
+    height:windowHeight * 0.1,
+    backgroundColor:'white',
+    justifyContent:'center',
+    alignItems:'center'
   },
   Text: {
     fontSize: 18,
@@ -163,6 +173,62 @@ const styles = ScaledSheet.create({
     color: Color.white,
     fontSize: moderateScale(17, 0.3),
   },
+  card:{
+    width: windowWidth * 0.45,
+    paddingHorizontal:moderateScale(13,0.2)
+    // backgroundColor:'red'
+  },
+  imgContainer:{
+    width:windowWidth * 0.35,
+    height: windowHeight * 0.15,
+    overflow:'hidden',
+    backgroundColor:'blue',
+    borderRadius: moderateScale(10,0.2)
+  },
+  image:{
+    width:'100%',
+    height:'100%'
+  },
+  txt:{
+    fontSize:moderateScale(16,0.3),
+    color:'black',
+
+  },
+  desc:{
+    fontSize: moderateScale(11,0.3),
+    color:'#000000',
+    textAlign:'justify',
+    width: windowWidth * 0.35,
+
+  }, 
+  recent:{
+    width:windowWidth,
+    flexDirection:'row',
+    justifyContent:'space-between',
+    paddingHorizontal:moderateScale(20,0.3),
+    marginTop: moderateScale(10,0.3)
+  },
+  recentCard:{
+    width: windowWidth * 0.9,
+    // borderColor:'red',
+    // borderWidth:1,
+    paddingVertical:moderateScale(10,0.2),
+    // paddingHorizontal:moderateScale(5,0.4),
+    paddingHorizontal:moderateScale(7,0.3),
+    marginTop:moderateScale(12,0.3)
+  },
+  imgContainer_recent:{
+    width: windowWidth * 0.85,
+    height: windowHeight * 0.25,
+    borderRadius: moderateScale(16,0.3),
+    overflow:'hidden'
+
+  },
+  search:{
+    width: windowWidth,
+    height:windowHeight * 0.1,
+    alignItems:'center',
+  }
 });
 
 export default HomeScreen;
