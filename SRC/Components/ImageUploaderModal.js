@@ -14,7 +14,11 @@ import {
   // Modal,
   Button,
 } from 'react-native';
-import {moderateScale, moderateVerticalScale, ScaledSheet} from 'react-native-size-matters';
+import {
+  moderateScale,
+  moderateVerticalScale,
+  ScaledSheet,
+} from 'react-native-size-matters';
 import {Icon} from 'native-base';
 import Modal from 'react-native-modal';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
@@ -47,8 +51,8 @@ const requestCameraPermission = async () => {
 const ImageUploaderModal = props => {
   let {show, setShow, setFileObject, setMultiImages, crop} = props;
 
-  const [imagePreview, setImagePreview] = useState({})
-  console.log("🚀 ~ ImageUploaderModal ~ imagePreview:", imagePreview)
+  const [imagePreview, setImagePreview] = useState({});
+  console.log('🚀 ~ ImageUploaderModal ~ imagePreview:', imagePreview);
   const openGallery = () => {
     let options = {
       mediaType: 'photo',
@@ -57,41 +61,40 @@ const ImageUploaderModal = props => {
       quailty: 0.9,
       saveToPhotos: true,
     };
-   
+
     launchImageLibrary(options, response => {
-            if (Platform.OS === 'ios') {
-              setShow(false);
-            }
-            if (response.didCancel) {
-            } else if (response.error) {
-            } else if (response.customButton) {
-              alert(response.customButton);
-            } else { 
-              setImagePreview({
-                uri: response?.assets[0]?.uri,
-                type: response?.assets[0]?.type,
-                name: response?.assets[0]?.fileName,
-              })
+      if (Platform.OS === 'ios') {
+        setShow(false);
+      }
+      if (response.didCancel) {
+      } else if (response.error) {
+      } else if (response.customButton) {
+        alert(response.customButton);
+      } else {
+        setImagePreview({
+          uri: response?.assets[0]?.uri,
+          type: response?.assets[0]?.type,
+          name: response?.assets[0]?.fileName,
+        });
 
-
-              setFileObject &&
-                setFileObject({
-                  uri: response?.assets[0]?.uri,
-                  type: response?.assets[0]?.type,
-                  name: response?.assets[0]?.fileName,
-                });
-
-              setMultiImages &&
-                setMultiImages(x => [
-                  ...x,
-                  {
-                    uri: response?.assets[0]?.uri,
-                    type: response?.assets[0]?.type,
-                    name: response?.assets[0]?.fileName,
-                  },
-                ]);
-            }
+        setFileObject &&
+          setFileObject({
+            uri: response?.assets[0]?.uri,
+            type: response?.assets[0]?.type,
+            name: response?.assets[0]?.fileName,
           });
+
+        setMultiImages &&
+          setMultiImages(x => [
+            ...x,
+            {
+              uri: response?.assets[0]?.uri,
+              type: response?.assets[0]?.type,
+              name: response?.assets[0]?.fileName,
+            },
+          ]);
+      }
+    });
     // }
   };
 
@@ -112,9 +115,7 @@ const ImageUploaderModal = props => {
     launchCamera(options, response => {
       if (Platform.OS == 'ios') {
         setShow(false);
-      }
-      
-      else {
+      } else {
         setFileObject &&
           setFileObject({
             uri: response?.assets[0]?.uri,
@@ -148,22 +149,28 @@ const ImageUploaderModal = props => {
         setShow(false);
       }}>
       <LinearGradient
-       colors={ ['#5FDEFA', '#1A75EF']}  start={{x: 0.5, y: 1}} end={{x: 0.7, y: 0.7}}
+        colors={['#5FDEFA', '#1A75EF']}
+        start={{x: 0.5, y: 1}}
+        end={{x: 0.7, y: 0.7}}
         style={{
           backgroundColor: Color.white,
           height: Dimensions.get('window').height * 0.33,
           width: Dimensions.get('window').width * 0.8,
-          alignItems:'center',
+          alignItems: 'center',
           paddingHorizontal: moderateScale(10, 0.3),
           paddingVertical: moderateScale(10, 0.3),
           borderRadius: Dimensions.get('window').width * 0.05,
         }}>
-        <CustomText isBold style={styles.modalHead}>Upload</CustomText>
-        <TouchableOpacity style={styles.modalContentContianer} onPress={()=>{
-                          if (Platform.OS === 'android') {
-                            // setShow(false);
-                          }
-                          openGallery();
+        <CustomText isBold style={styles.modalHead}>
+          Upload
+        </CustomText>
+        <TouchableOpacity
+          style={styles.modalContentContianer}
+          onPress={() => {
+            if (Platform.OS === 'android') {
+              // setShow(false);
+            }
+            openGallery();
           }}>
           {/* <TouchableOpacity
             onPress={() => {
@@ -201,29 +208,38 @@ const ImageUploaderModal = props => {
             />
             <CustomText style={styles.modalBtnText}>Camera</CustomText>
           </TouchableOpacity> */}
-      { Object.keys(imagePreview).length > 0 ?    <CustomImage onPress={()=>{
-                if (Platform.OS === "android") {
+          {Object.keys(imagePreview).length > 0 ? (
+            <CustomImage
+              onPress={() => {
+                if (Platform.OS === 'android') {
                   setShow(false);
                 }
                 openGallery();
-
-          }}
-          style={{width:windowHeight * 0.2, height: windowHeight * 0.2}}
-          source={
-             {uri: imagePreview?.uri} 
-            // require('../Assets/Images/upload.png')
-          }/> 
-          :    <CustomImage onPress={()=>{
-            if (Platform.OS === "android") {
-              // setShow(false);
-            }
-            openGallery();
-
-      }}
-      source={
-        //  {uri: imagePreview?.uri} :
-        require('../Assets/Images/upload.png')}/>
-          }
+              }}
+              style={{
+                width: windowHeight * 0.2,
+                height: windowHeight * 0.2,
+                borderRadius: moderateScale(15, 0.6),
+              }}
+              source={
+                {uri: imagePreview?.uri}
+                // require('../Assets/Images/upload.png')
+              }
+            />
+          ) : (
+            <CustomImage
+              onPress={() => {
+                if (Platform.OS === 'android') {
+                  // setShow(false);
+                }
+                openGallery();
+              }}
+              source={
+                //  {uri: imagePreview?.uri} :
+                require('../Assets/Images/upload.png')
+              }
+            />
+          )}
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => setShow(false)}
@@ -298,7 +314,7 @@ const styles = ScaledSheet.create({
   modalHead: {
     fontSize: moderateScale(20, 0.3),
     fontWeight: 'bold',
-    color:'white',
+    color: 'white',
     marginBottom: moderateScale(7.5, 0.3),
   },
   modalContentContianer: {
@@ -306,10 +322,10 @@ const styles = ScaledSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     alignContent: 'center',
-    borderRadius: moderateScale(24,0.4),
+    borderRadius: moderateScale(24, 0.4),
     height: windowHeight * 0.21,
     width: windowWidth * 0.7,
-    backgroundColor:Color.white
+    backgroundColor: Color.white,
   },
   modalContentBtn: {
     backgroundColor: Color.themeColor,
@@ -321,20 +337,20 @@ const styles = ScaledSheet.create({
   modalBtnText: {
     // fontWeight: 'bold',
     color: Color.black,
-    fontSize: moderateScale(18, 0.3),
+    fontSize: moderateScale(16, 0.3),
   },
   modalSubmitBtn: {
     backgroundColor: Color.white,
-    paddingVertical: moderateScale(15,0.2),
+    paddingVertical: moderateScale(15, 0.2),
     // paddingHorizontal:moderateScale(3,0.2),
     width: windowWidth * 0.35,
     alignItems: 'center',
-    position:'absolute',
+    position: 'absolute',
     bottom: -20,
     // alignSelf: 'flex-end',
     marginTop: moderateScale(10, 0.3),
     borderRadius: moderateScale(35, 0.3),
-    elevation:10,
+    elevation: 10,
   },
 });
 

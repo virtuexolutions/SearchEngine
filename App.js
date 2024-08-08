@@ -12,6 +12,10 @@ import {
 import SplashScreen from './SRC/Screens/SplashScreen';
 
 import LoginScreen from './SRC/Screens/LoginScreen';
+import GetStart from './SRC/Screens/GetStart';
+import CreateAccount from './SRC/Screens/CreateAccount';
+import ChooseSearchEngineType from './SRC/Screens/ChooseSearchEngineType';
+import AppNavigator from './SRC/appNavigation';
 
 
 const App = () => {
@@ -43,10 +47,12 @@ const MainContainer = () => {
   if (isloading == true) {
     return <SplashScreen />;
   }
-  // return <AppNavigator />
+  return <AppNavigator />
   // return <EditProfile />
-  // <LoginScreen/>
-   return <GetStart/>
+//  return <LoginScreen/>
+// return <CreateAccount/>
+  //  return <GetStart/>
+  // return <ChooseSearchEngineType/>
 };
 
 const useloader = value => {

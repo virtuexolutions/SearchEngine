@@ -8,12 +8,13 @@ import CustomText from '../Components/CustomText';
 import {Checkbox, Icon} from 'native-base';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import ImageUploaderModal from '../Components/ImageUploaderModal';
+import Color from '../Assets/Utilities/Color';
 
 const ChooseSearchEngineType = () => {
   const [activeTab, setActiveTab] = useState('Patner');
   const [search, setSearch] = useState('');
   const [imageUploadVisible, setImageUploadVisible] = useState(false);
-  const [permission, setPermission] = useState('')
+  const [permission, setPermission] = useState('');
 
   return (
     <>
@@ -217,7 +218,7 @@ const ChooseSearchEngineType = () => {
           <View style={styles.row}>
             <CustomText>01: Personal Asset</CustomText>
             <View style={styles.checkboxContainer}>
-            <Checkbox
+              <Checkbox
                 value={permission}
                 onChange={setPermission}
                 accessibilityLabel="This is a dummy checkbox"
@@ -232,14 +233,16 @@ const ChooseSearchEngineType = () => {
                 // defaultIsChecked
                 color={'#2C9FED'}
                 borderColor={'#62b4eb'}
-
               />
             </View>
           </View>
+          {/* <View
+            style={{width: '90%', borderWidth: 0.2, borderColor: '#5FDEFA'}}
+          /> */}
           <View style={styles.row}>
             <CustomText>02: Pubucist</CustomText>
             <View style={styles.checkboxContainer}>
-            <Checkbox
+              <Checkbox
                 value={permission}
                 onChange={setPermission}
                 accessibilityLabel="This is a dummy checkbox"
@@ -254,14 +257,13 @@ const ChooseSearchEngineType = () => {
                 // defaultIsChecked
                 color={'#2C9FED'}
                 borderColor={'#62b4eb'}
-
               />
             </View>
           </View>
           <View style={styles.row}>
             <CustomText>03: Life</CustomText>
             <View style={styles.checkboxContainer}>
-            <Checkbox
+              <Checkbox
                 value={permission}
                 onChange={setPermission}
                 accessibilityLabel="This is a dummy checkbox"
@@ -276,14 +278,13 @@ const ChooseSearchEngineType = () => {
                 // defaultIsChecked
                 borderColor={'#62b4eb'}
                 color={'#2C9FED'}
-
               />
             </View>
           </View>
           <View style={styles.row}>
             <CustomText>04: Kids</CustomText>
             <View style={styles.checkboxContainer}>
-            <Checkbox
+              <Checkbox
                 value={permission}
                 onChange={setPermission}
                 accessibilityLabel="This is a dummy checkbox"
@@ -304,10 +305,10 @@ const ChooseSearchEngineType = () => {
           <View style={styles.row}>
             <CustomText>06: Best Friend #02</CustomText>
             <View style={styles.checkboxContainer}>
-            {/* <Checkbox.Group mt="2" colorScheme="#2C9FED" defaultValue={permission} accessibilityLabel="choose multiple items" onChange={values => {
+              {/* <Checkbox.Group mt="2" colorScheme="#2C9FED" defaultValue={permission} accessibilityLabel="choose multiple items" onChange={values => {
           setPermission(values || []);
         }} alignItems="flex-start"> */}
-            <Checkbox
+              <Checkbox
                 value={permission}
                 onChange={setPermission}
                 accessibilityLabel="This is a dummy checkbox"
@@ -326,10 +327,9 @@ const ChooseSearchEngineType = () => {
           </View>
         </View>
         <TouchableOpacity
-        onPress={()=>{
-            setImageUploadVisible(true)
-        }}
-        >
+          onPress={() => {
+            setImageUploadVisible(true);
+          }}>
           <LinearGradient
             style={styles.btn}
             colors={['#5FDEFA', '#1A75EF']}
@@ -344,7 +344,10 @@ const ChooseSearchEngineType = () => {
           </LinearGradient>
         </TouchableOpacity>
       </ScrollView>
-      <ImageUploaderModal show={imageUploadVisible} setShow={setImageUploadVisible}/>
+      <ImageUploaderModal
+        show={imageUploadVisible}
+        setShow={setImageUploadVisible}
+      />
     </>
   );
 };
@@ -404,9 +407,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: moderateScale(6, 0.3),
     paddingVertical: moderateScale(4, 0.3),
   },
-  checkboxContainer:{
-    flexDirection:'row',
-    gap:moderateScale(12,0.2)
+  checkboxContainer: {
+    flexDirection: 'row',
+    gap: moderateScale(12, 0.2),
   },
   btn: {
     width: windowWidth * 0.12,

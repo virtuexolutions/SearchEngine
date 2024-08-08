@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import {
   View,
   TouchableOpacity,
@@ -9,16 +9,16 @@ import {
   Platform,
 } from 'react-native';
 
-import { Icon } from 'native-base';
+import {Icon} from 'native-base';
 import Color from '../Assets/Utilities/Color';
-import { useState } from 'react';
-import { moderateScale, scale, ScaledSheet } from 'react-native-size-matters';
+import {useState} from 'react';
+import {moderateScale, scale, ScaledSheet} from 'react-native-size-matters';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Foundation from 'react-native-vector-icons/Foundation';
-import { windowHeight, windowWidth } from '../Utillity/utils';
+import {windowHeight, windowWidth} from '../Utillity/utils';
 import CustomText from './CustomText';
-import { FONTS } from '../Constant/theme';
+import {FONTS} from '../Constant/theme';
 
 const TextInputWithTitle = props => {
   const [showPassword, setShowPassword] = useState(false);
@@ -29,9 +29,9 @@ const TextInputWithTitle = props => {
         <CustomText
           style={[
             {
-              color: props.titleColor ? props.titleColor: Color.veryLightGray,
+              color: props.titleColor ? props.titleColor : Color.veryLightGray,
               fontSize: moderateScale(12, 0.3),
-              marginBottom: moderateScale(5, 0.3),
+              marginBottom: moderateScale(1, 0.3),
               width: windowWidth * props.viewWidth,
               marginTop: props.marginTop
                 ? props.marginTop
@@ -88,11 +88,17 @@ const TextInputWithTitle = props => {
             alignItems: props.alignItems,
           },
           props.iconName &&
-          !props.rightIcon && {
-            paddingLeft: moderateScale(15, 0.3),
-          },
+            !props.rightIcon && {
+              paddingLeft: moderateScale(15, 0.3),
+            },
         ]}>
-        {props.foundation && (<Foundation color={props.iconColor} name={props.iconName} size={moderateScale(20, 0.2)} />)}
+        {props.foundation && (
+          <Foundation
+            color={props.iconColor}
+            name={props.iconName}
+            size={moderateScale(20, 0.2)}
+          />
+        )}
         {props.iconName && !props.foundation && (
           <Icon
             name={props.iconName}
@@ -103,7 +109,10 @@ const TextInputWithTitle = props => {
                 textAlign: 'center',
                 width: windowWidth * 0.07,
                 // paddingTop :moderateScale(10,.6),
-                color: (props.color && !props.disable) ? props.color : Color.veryLightGray,
+                color:
+                  props.color && !props.disable
+                    ? props.color
+                    : Color.veryLightGray,
                 fontSize: moderateScale(18, 0.6),
                 // paddingLeft: Dimensions.get("window").width * 0.0175,
               },
@@ -120,7 +129,7 @@ const TextInputWithTitle = props => {
             ]}
             size={moderateScale(17, 0.3)}
             onPress={props.onPressLeft}
-          // color={props.iconColor ? props.iconColor :'black'}
+            // color={props.iconColor ? props.iconColor :'black'}
           />
         )}
 
@@ -133,22 +142,21 @@ const TextInputWithTitle = props => {
                 },
                 Platform.OS === 'android'
                   ? [
-                    styles.inputBox,
-                    {
-                      paddingBottom: 10,
-                      fontSize: props?.fontSize
-                        ? props?.fontSize
-                        : moderateScale(12, 0.6),
-                      fontWeight: '400',
-                    },
-                  ]
+                      styles.inputBox,
+                      {
+                        paddingBottom: 10,
+                        fontSize: props?.fontSize
+                          ? props?.fontSize
+                          : moderateScale(12, 0.6),
+                        fontWeight: '400',
+                      },
+                    ]
                   : [
-                    styles.inputBox,
-                    {
-                      paddingBottom: 0,
-
-                    },
-                  ],
+                      styles.inputBox,
+                      {
+                        paddingBottom: 0,
+                      },
+                    ],
               ]}
               onChangeText={text => props.setText(text)}
               value={props.value}
@@ -195,7 +203,7 @@ const TextInputWithTitle = props => {
                 },
                 Platform.OS === 'android'
                   ? styles.inputBox
-                  : [styles.inputBox, { paddingBottom: 0 }],
+                  : [styles.inputBox, {paddingBottom: 0}],
                 props.numberOfLines > 1 && {
                   textAlignVertical: 'top',
                 },
@@ -228,8 +236,8 @@ const TextInputWithTitle = props => {
               numberOfLines={props.numberOfLines || 1}
               editable={props.disable ? false : true}
               autoCapitalize="none"
-            // onPressIn={()=>{console.log('fdadsas');}}
-            // textAlignVertical={props.textAlignVertical}
+              // onPressIn={()=>{console.log('fdadsas');}}
+              // textAlignVertical={props.textAlignVertical}
             />
           </TouchableOpacity>
         )}

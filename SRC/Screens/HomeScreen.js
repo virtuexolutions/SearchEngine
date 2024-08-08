@@ -134,7 +134,7 @@ const [ search,setSearch ] = useState('')
               <CustomImage source={item.image} style={styles.image}/>
               </View>
               <CustomText isBold style={[styles.txt, {marginLeft: moderateScale(3,0.3)}]}>{item.heading}</CustomText>
-              <CustomText style={[styles.desc, {width: windowWidth * 0.85, fontSize:moderateScale(7,0.3), marginLeft: moderateScale(3,0.3)}]}>{item.description}</CustomText>
+              <CustomText style={[styles.desc, {width: windowWidth * 0.85, fontSize:moderateScale(10,0.3), marginLeft: moderateScale(3,0.3)}]}>{item.description}</CustomText>
             </View>
           );
         }}  
@@ -195,7 +195,7 @@ const styles = ScaledSheet.create({
 
   },
   desc:{
-    fontSize: moderateScale(11,0.3),
+    fontSize: moderateScale(10,0.3),
     color:'#000000',
     textAlign:'justify',
     width: windowWidth * 0.35,

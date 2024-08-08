@@ -42,6 +42,8 @@ import Drawer from './Drawer/Drawer';
 // import Start from './Screens/Start';
 // import MyWallet from './Screens/MyWallet';
 import GetStart from './Screens/GetStart';
+import CreateAccount from './Screens/CreateAccount';
+import ChooseSearchEngineType from './Screens/ChooseSearchEngineType';
 
 const AppNavigator = () => {
   const isGoalCreated = useSelector(state => state.authReducer.isGoalCreated);
@@ -73,7 +75,10 @@ const AppNavigator = () => {
           />
 
           <RootNav.Screen name="LoginScreen" component={LoginScreen} />
+          <RootNav.Screen name="HomeScreen" component={HomeScreen} />
           <RootNav.Screen name="GetStart" component={GetStart} />
+          <RootNav.Screen name="CreateYourAccount" component={CreateAccount} />
+          <RootNav.Screen name="ChooseSearchEngineType" component={ChooseSearchEngineType} />
 
           <RootNav.Screen name="Signup" component={Signup} />
         </RootNav.Navigator>

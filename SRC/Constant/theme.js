@@ -1,5 +1,6 @@
 import { Dimensions } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
+import { moderateScale } from "react-native-size-matters";
 
 export const SIZES = {
     // global sizes
@@ -39,7 +40,7 @@ export const FONTS = {
     // poppins
     PoppinsBold8: {
         fontFamily: 'Poppins-Bold',
-        fontSize: RFValue(SIZES.h8),
+        fontSize: moderateScale(SIZES.h8 , 0.3),
     },
     PoppinsBold11: {
         fontFamily: 'Poppins-Bold',

@@ -25,6 +25,7 @@ const ModalComponent = ({
   setPassword,
   username,
   setUserName,
+  fieldTitle2,
   style,
   isCircle,
   isText,
@@ -34,8 +35,16 @@ const ModalComponent = ({
   isSave,
   buttonText,
   isScure,
+  onButtonPress,
   headingText,
+  firstFieldValue,
+  setFirstFieldValue,
+  secondFieldValue,
+  setSecondFieldValue,
   text,
+  finishPage,
+  isfirstPage,
+  onlyRequiredPassword,
 }) => {
   console.log('🚀 ~ titleText:', titleText);
   return (
@@ -44,7 +53,7 @@ const ModalComponent = ({
       end={{x: 0, y: 1}}
       colors={['#9ae7ff', '#76c2ff', '#64c0ff']}
       //  colors={['#00C6FF', '#0072FF']}
-      style={style ? style : styles.Card}>
+      style={[styles.Card, style && style]}>
       {isCircle && (
         <View style={styles.image}>
           <CustomText isBold style={styles.txt}>
@@ -75,40 +84,45 @@ const ModalComponent = ({
             alignItems: 'center',
             marginTop: moderateScale(20, 0.3),
           }}>
-          <TextInputWithTitle
-            iconHeigth={windowHeight * 0.00005}
-            titleText={titleText ? titleText : 'Username'}
-            placeholder={
-              placeHolderText1
-                ? placeHolderText1
-                : 'Username, Email or Phone Number'
-            }
-            setText={setUserName}
-            value={username}
-            viewHeight={0.06}
-            viewWidth={0.8}
-            inputWidth={0.55}
-            border={1}
-            borderRadius={moderateScale(30, 0.3)}
-            backgroundColor={'white'}
-            borderColor={Color.black}
-            marginTop={moderateScale(10, 0.3)}
-            color={Color.black}
-            placeholderColor={Color.mediumGray}
-          />
+          {!onlyRequiredPassword && (
+            <TextInputWithTitle
+              iconHeigth={windowHeight * 0.00005}
+              titleText={titleText ? titleText : 'Username'}
+              placeholder={
+                placeHolderText1
+                  ? placeHolderText1
+                  : 'Username, Email or Phone Number'
+              }
+              // setText={setUserName}
+              // value={username}
+              setText={setFirstFieldValue}
+              value={firstFieldValue}
+              viewHeight={0.06}
+              viewWidth={0.8}
+              inputWidth={0.55}
+              borderRadius={moderateScale(30, 0.3)}
+              backgroundColor={'white'}
+              borderColor={Color.black}
+              marginTop={moderateScale(10, 0.3)}
+              color={Color.black}
+              placeholderColor={Color.mediumGray}
+            />
+          )}
           <TextInputWithTitle
             iconHeigth={windowHeight * 0.00005}
             RightIcon={true}
-            titleText={'Password'}
+            title={fieldTitle2}
+            titleColor={'black'}
             placeholder={placeHolderText2 ? placeHolderText2 : 'Password'}
-            setText={setPassword}
-            value={password}
+            // setText={setPassword}
+            // value={password}
+            setText={setSecondFieldValue}
+            value={secondFieldValue}
             secureText={isScure ? true : false}
             viewHeight={0.06}
             viewWidth={0.8}
             inputWidth={0.55}
             borderRadius={moderateScale(30, 0.3)}
-            border={1}
             backgroundColor={'white'}
             marginTop={moderateScale(10, 0.3)}
             placeholderColor={Color.mediumGray}
@@ -143,9 +157,9 @@ const ModalComponent = ({
           )}
           <View style={{marginTop: SIZES.padding * 1.6}} />
           <CustomButton
-            onPress={() => {}}
+            onPress={onButtonPress}
             text={buttonText ? buttonText : 'X'}
-            fontSize={moderateScale(16, 0.3)}
+            fontSize={moderateScale(15, 0.3)}
             textColor={'#000000'}
             borderWidth={1.5}
             borderColor={Color.white}
@@ -157,12 +171,25 @@ const ModalComponent = ({
             isBold
           />
         </View>
-        <CustomText style={styles.txt3}>
-          We Will Send SMS Verification Code
-        </CustomText>
-        <TouchableOpacity style={styles.btn}>
-          <CustomText style={styles.txt3}>user email</CustomText>
-        </TouchableOpacity>
+        {!finishPage && (
+          <CustomText
+            style={[
+              styles.txt3,
+              !isfirstPage && {
+                fontSize: moderateScale(8, 0.3),
+                width: windowWidth * 0.6,
+              },
+            ]}>
+            {isfirstPage
+              ? 'We Will Send SMS Verification Code'
+              : 'By creating an account with us, you certify you have read and accepted the Privacy Policy and Terms and Conditions'}
+          </CustomText>
+        )}
+        {isfirstPage && (
+          <TouchableOpacity style={styles.btn}>
+            <CustomText style={styles.txt3}>user email</CustomText>
+          </TouchableOpacity>
+        )}
       </View>
     </LinearGradient>
   );
@@ -190,7 +217,7 @@ const styles = StyleSheet.create({
   image: {
     position: 'absolute',
     left: 115,
-    top: -45,
+    top: -55,
     width: windowHeight * 0.18,
     height: windowHeight * 0.17,
     borderRadius: (windowHeight * 0.17) / 1.5,

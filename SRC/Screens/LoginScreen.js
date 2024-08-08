@@ -1,5 +1,11 @@
 import React, {useState} from 'react';
-import {ImageBackground, ScrollView, StyleSheet, View} from 'react-native';
+import {
+  ImageBackground,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {moderateScale} from 'react-native-size-matters';
 import {useDispatch, useSelector} from 'react-redux';
@@ -12,7 +18,7 @@ import {windowHeight, windowWidth} from '../Utillity/utils';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {FONTS, SIZES} from '../Constant/theme';
 
-const LoginScreen = props => {
+const LoginScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
   const [username, setUserName] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -77,7 +83,6 @@ const LoginScreen = props => {
                   viewHeight={0.06}
                   viewWidth={0.8}
                   inputWidth={0.55}
-                  border={1}
                   borderRadius={moderateScale(30, 0.3)}
                   backgroundColor={'white'}
                   borderColor={Color.black}
@@ -97,15 +102,17 @@ const LoginScreen = props => {
                   viewWidth={0.8}
                   inputWidth={0.55}
                   borderRadius={moderateScale(30, 0.3)}
-                  border={1}
                   backgroundColor={'white'}
                   marginTop={moderateScale(10, 0.3)}
                   placeholderColor={Color.mediumGray}
                 />
+
                 <CustomText style={styles.txt2}>Forgot Password?</CustomText>
                 <View style={{marginTop: SIZES.padding * 1.11, zIndex: -1}} />
                 <CustomButton
-                  onPress={() => {}}
+                  onPress={() => {
+                    navigation.navigate('HomeScreen');
+                  }}
                   text={'Log in'}
                   fontSize={moderateScale(16, 0.3)}
                   textColor={'#000000'}
@@ -119,7 +126,12 @@ const LoginScreen = props => {
                   isBold
                 />
               </View>
-              <CustomText style={styles.txt3}>setting</CustomText>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('CreateYourAccount');
+                }}>
+                <CustomText style={styles.txt3}>setting</CustomText>
+              </TouchableOpacity>
             </View>
           </LinearGradient>
           {/* </View> */}
@@ -150,7 +162,6 @@ const styles = StyleSheet.create({
   },
   image: {
     position: 'absolute',
-    left: 115,
     top: -45,
     width: windowHeight * 0.18,
     height: windowHeight * 0.17,
@@ -161,6 +172,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     alignItems: 'center',
     justifyContent: 'center',
+    alignSelf: 'center',
   },
   txt: {
     color: 'white',
@@ -194,8 +206,8 @@ const styles = StyleSheet.create({
 
   description: {
     color: '#000000',
-    ...FONTS.PoppinsLight11,
-    fontSize: moderateScale(10, 0.6),
+    // ...FONTS.PoppinsBold8,
+    fontSize: moderateScale(12, 0.6),
     paddingHorizontal: SIZES.padding * 1.3,
     textAlign: 'center',
   },

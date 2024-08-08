@@ -33,7 +33,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {FONTS, SIZES} from '../Constant/theme';
 import ModalComponent from '../Components/ModalComponent';
 
-const GetStart = props => {
+const GetStart = ({navigation, route}) => {
   const dispatch = useDispatch();
   const [username, setUserName] = useState('');
   const [image, setImage] = useState({});
@@ -50,6 +50,7 @@ const GetStart = props => {
             alignItems: 'center',
             justifyContent: 'center',
             height: windowHeight,
+            gap:moderateScale(15,0.3)
           }}
           source={require('../Assets/Images/bg.png')}>
           <View style={styles.imageContainer}>
@@ -58,6 +59,47 @@ const GetStart = props => {
               source={require('../Assets/Images/logo2.png')}
             />
           </View>
+          <LinearGradient
+      start={{x: 0, y: 1}}
+      end={{x: 1, y: 0}}
+      colors={['#9ae7ff', '#76c2ff', '#35aeff']}
+      //  colors={['#00C6FF', '#0072FF']}
+      style={styles.Card}>
+         <CustomButton
+            onPress={()=>{
+              navigation.navigate('LoginScreen')
+            }}
+            text={'Log in'}
+            fontSize={moderateScale(16, 0.3)}
+            textColor={'#000000'}
+            borderWidth={1.5}
+            borderColor={Color.white}
+            borderRadius={moderateScale(30, 0.3)}
+            width={windowWidth * 0.8}
+            height={windowHeight * 0.06}
+            // marginTop={moderateScale(25, 0.3)}
+            bgColor={'white'}
+            isBold
+          />
+         <CustomButton
+            onPress={()=>{
+              navigation.navigate('ChooseSearchEngineType')
+            }}
+            text={'Create Your Personal Search Engine'}
+            fontSize={moderateScale(16, 0.3)}
+            textColor={'#7e7c7c'}
+            borderWidth={1.5}
+            borderColor={Color.white}
+            borderRadius={moderateScale(30, 0.3)}
+            width={windowWidth * 0.8}
+            height={windowHeight * 0.06}
+            // marginTop={moderateScale(25, 0.3)}
+            bgColor={'white'}
+            isBold
+          />
+      </LinearGradient>
+        
+          {/* <ModalComponent/> */}
         </ImageBackground>
       </ScrollView>
     </SafeAreaView>
@@ -69,11 +111,15 @@ const styles = StyleSheet.create({
     height: windowHeight * 0.1,
     width: windowWidth * 0.3,
   },
-  card:{
-    borderWidth:1,
-    borderColor:'white',
-    width:windowWidth*0.7 ,
-  }
+  Card: {
+    // backgroundColor: '#5FDEFA',
+    width: windowWidth * 0.9,
+    paddingVertical:moderateScale(20,0.3),
+    borderRadius: moderateScale(20, 0.6),
+    borderWidth: 2,
+    borderColor: 'white',
+    gap: moderateScale(15,0.3)
+  },
 });
 
 export default GetStart;
